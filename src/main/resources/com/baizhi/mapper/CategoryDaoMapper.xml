@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.CategoryDao">
+
+    <sql id="all">
+        select id,cate_name,levels,parent_id from yx_category
+    </sql>
+
+    <!--//查询所有一级类别-->
+    <!--List<Category> queryByLevels(Integer levels);-->
+    <select id="queryByLevels" parameterType="Integer" resultType="category">
+        <include refid="all"/> where levels=#{levels}
+    </select>
+
+    <!--//根据以及类别查询所有子类别-->
+    <!--List<Category> queryByParentid(String parentid);-->
+    <select id="queryByParentid" parameterType="String" resultType="category">
+        <include refid="all"/> where parent_id=#{parentid}
+    </select>
+
+    <!--//添加类别-->
+    <!--void addCategory(Category category);-->
+    <insert id="addCategory" parameterType="category">
+        insert into yx_category values (#{id},#{cate_name},#{levels},#{parent_id})
+    </insert>
+
+    <!--//删除类别-->
+    <!--void deleteCategory(String id);-->
+    <delete id="deleteCategory" parameterType="category">
+        delete from yx_category where id=#{id}
+    </delete>
+
+    <!--//修改二级类别名-->
+    <!--void updateCategory(Category category);-->
+    <update id="updateCategory" parameterType="category">
+        update yx_category set cate_name=#{cate_name} where id=#{id}
+    </update>
+
+    <!--//根据id查询类别详细-->
+    <!--Category selectCategory(String id);-->
+    <select id="selectCategory" parameterType="String" resultType="category">
+        <include refid="all"/> where id=#{id}
+    </select>
+
+
+</mapper>

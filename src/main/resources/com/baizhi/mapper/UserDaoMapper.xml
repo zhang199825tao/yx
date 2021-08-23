@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.UserDao">
+
+    <sql id="all">
+        select id,username,phone,headimg,brief,wechat,creatdate,status from yx_user
+    </sql>
+
+    <!--//根据id查一个-->
+    <!--User selectUser(String id);-->
+    <select id="selectUser" parameterType="String" resultType="user">
+        <include refid="all"/> where id=#{id}
+    </select>
+
+
+    <!--List<User> selectByPage(@Param("start") int start,@Param("size") int size);-->
+    <select id="selectByPage" resultType="user">
+        <include refid="all"/> limit #{start},#{size}
+    </select>
+
+    <!--int selectCount();-->
+    <select id="selectCount" resultType="int">
+        select count(*) from yx_user
+    </select>
+
+    <!--void updateStatus(@Param("status") int status,@Param("id") String id);-->
+    <update id="updateStatus" parameterType="user">
+        update yx_user set status=#{status} where id=#{id}
+    </update>
+
+    <!--//添加用户-->
+    <!--void addUser(User user);-->
+    <insert id="addUser" parameterType="user">
+        insert into yx_user (id,username,phone,headimg,brief,wechat,creatdate,status) values (#{id},#{username},#{phone},#{headimg},#{brief},#{wechat},#{creatdate},#{status})
+    </insert>
+
+    <!--//删除用户-->
+    <!--void deleteUser(String id);-->
+    <delete id="deleteUser" parameterType="String">
+        delete from yx_user where id=#{id}
+    </delete>
+
+    <!--//查所有用户-->
+    <!--List<User> findAll();-->
+    <select id="findAll" resultType="user">
+        <include refid="all"/>
+    </select>
+
+    <!--//根据注册月份查询男生人数-->
+    <!--List<VoMonthAndCount> selectManOrWoman(String sex);-->
+    <select id="selectManOrWoman" parameterType="String" resultType="VoMonthAndCount">
+      select month(creatdate) month,count(*) count from yx_user where sex=#{sex} group by month(creatdate)
+    </select>
+
+
+
+</mapper>

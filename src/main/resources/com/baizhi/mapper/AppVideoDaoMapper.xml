@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AppVideoDao">
+
+
+    <!--//查所有-->
+    <!--List<AppVideo> findAll();-->
+    <select id="findAll" resultType="com.baizhi.entity.AppVideo">
+        select v.id id,title videoTile,v.brief description,cover_path cover,video_path path,create_date uploadTime,c.cate_name cateName,u.headimg userPhoto
+        from yx_video v
+        left join yx_category c on v.category_id=c.id
+        left join yx_user u on v.user_id=u.id
+    </select>
+</mapper>
