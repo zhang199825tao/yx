@@ -48,6 +48,7 @@ public class TestUserDao {
         List<VoMonthAndCount> man = userDao.selectManOrWoman("男");
         for (VoMonthAndCount voMonthAndCount : man) {
             System.out.println(voMonthAndCount);
+            System.out.println("111");
         }
     }
 
