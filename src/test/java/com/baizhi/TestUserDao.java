@@ -49,6 +49,7 @@ public class TestUserDao {
         for (VoMonthAndCount voMonthAndCount : man) {
             System.out.println(voMonthAndCount);
             System.out.println("111");
+            System.out.println("2222");
         }
     }
 
