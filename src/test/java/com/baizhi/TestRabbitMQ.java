@@ -20,7 +20,7 @@ public class TestRabbitMQ {
         //设置rabbitmq服务器连接端口
         factory.setPort(5672);
         //设置rabbitmq服务器虚拟主机
-        factory.setVirtualHost("/yingx");
+        factory.setVirtualHost("2101");
         //设置rabbitmq服务器用户名
         factory.setUsername("zhang");
         //设置rabbitmq服务器密码
