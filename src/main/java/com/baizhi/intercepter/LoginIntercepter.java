@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 
 
 public class LoginIntercepter implements HandlerInterceptor {
@@ -13,14 +14,14 @@ public class LoginIntercepter implements HandlerInterceptor {
     private StringRedisTemplate redisTemplate;
     @Override//预先经过的方法
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        String token = request.getParameter("token");
-//        System.out.println("拦截器执行了  "+token);
-//        if(redisTemplate.hasKey(token)){
-//            redisTemplate.expire(token, 30, TimeUnit.MINUTES);
+        String token = request.getHeader("token");
+        System.out.println("拦截器执行了  "+token);
+        if(redisTemplate.hasKey(token)){
+            redisTemplate.expire(token, 30, TimeUnit.MINUTES);
             return true;//放行
-//        }else {
-//            throw new RuntimeException();
-//        }
+        }else {
+            throw new RuntimeException();
+        }
 
     }
 
