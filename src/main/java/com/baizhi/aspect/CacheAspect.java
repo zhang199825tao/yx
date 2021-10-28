@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CacheAspect  {
 
+
+
     @Autowired
     private RedisTemplate redisTemplate;
 
