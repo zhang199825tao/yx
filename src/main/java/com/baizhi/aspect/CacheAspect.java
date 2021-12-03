@@ -19,6 +19,9 @@ public class CacheAspect  {
     @Autowired
     private RedisTemplate redisTemplate;
 
+
+
+
     @Around(value = "execution(* com.baizhi.service.*Impl.query*(..))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         //获取类的全路径

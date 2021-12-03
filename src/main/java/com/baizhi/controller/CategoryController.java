@@ -32,6 +32,7 @@ public class CategoryController {
 
     @RequestMapping("save")
     public void save(@RequestBody Category category){
+
         categoryService.addCategory(category);
     }
 

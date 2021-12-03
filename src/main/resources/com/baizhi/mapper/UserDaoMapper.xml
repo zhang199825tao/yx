@@ -14,7 +14,7 @@
 
 
     <!--List<User> selectByPage(@Param("start") int start,@Param("size") int size);-->
-    <select id="selectByPage" resultType="user">
+    <select id="selectByPage" resultType="User">
         <include refid="all"/> limit #{start},#{size}
     </select>
 
