@@ -17,7 +17,7 @@ public class HelloB extends HelloA {
         new HelloB();
         System.out.println("main end");
     }
-
+//111
 //    static A
 //    static b
 //    main start
